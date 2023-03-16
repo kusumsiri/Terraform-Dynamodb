@@ -1,8 +1,8 @@
 terraform {
   required_providers {
     aws = {
-        source = "hashicorp/aws"
-       version = "~> 4.16"
+      source = "hashicorp/aws"
+      version = "~> 4.16"
     }
   }
 
@@ -14,12 +14,23 @@ provider "aws" {
 }
 
 resource "aws_dynamodb_table" "myDynamo_table" {
-    name    = "terraform-table-example"
+    name        = "terraform-table-example"
     hash_key    = "email"
-    billing_mode    = "PAY_PER_REQUEST"
+    range_key   = "reminder_title"
+    billing_mode= "PAY_PER_REQUEST"
 
     attribute {
       name = "email"
       type = "S"
-  }
+    }
+
+    attribute {
+      name = "reminder_title"
+      type = "S"
+    }
+
+    ttl {
+      attribute_name = "remindTime"
+      enabled = true
+    }
 }
