@@ -13,8 +13,8 @@ provider "aws" {
   region = "us-east-1"
 }
 
-resource "aws_dynamodb_table" "myDynamo_table" {
-    name        = "terraform-table-example"
+resource "aws_dynamodb_table" "DynamoDB_reminder-app" {
+    name        = "reminder-app"
     hash_key    = "email"
     range_key   = "reminder_title"
     billing_mode= "PAY_PER_REQUEST"
