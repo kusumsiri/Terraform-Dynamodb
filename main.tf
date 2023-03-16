@@ -17,4 +17,9 @@ resource "aws_dynamodb_table" "myDynamo_table" {
     name    = "my-dynamo-table-example"
     hash_key    = "email"
     billing_mode    = "PAY_PER_REQUEST"
+
+    attribute {
+      name = "email"
+      type = "S"
+  }
 }
