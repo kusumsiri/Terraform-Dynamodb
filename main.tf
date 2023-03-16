@@ -18,6 +18,8 @@ resource "aws_dynamodb_table" "DynamoDB_reminder-app" {
     hash_key    = "email"
     range_key   = "reminder_title"
     billing_mode= "PAY_PER_REQUEST"
+    stream_enabled   = true
+    stream_view_type = "NEW_AND_OLD_IMAGES"
 
     attribute {
       name = "email"
