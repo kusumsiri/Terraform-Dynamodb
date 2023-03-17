@@ -14,7 +14,7 @@ provider "aws" {
 }
 
 resource "aws_dynamodb_table" "DynamoDB_reminder-app" {
-    name        = "reminder-app"
+    name        = var.table_name
     hash_key    = "email"
     range_key   = "reminder_title"
     billing_mode= "PAY_PER_REQUEST"
