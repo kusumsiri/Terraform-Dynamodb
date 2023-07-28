@@ -31,26 +31,26 @@ resource "aws_dynamodb_table" "state_locking" {
   billing_mode = "PAY_PER_REQUEST"
 }
 
-# resource "aws_dynamodb_table" "DynamoDB_reminder-app" {
-#     name        = var.table_name
-#     hash_key    = "email"
-#     range_key   = "reminder_title"
-#     billing_mode= "PAY_PER_REQUEST"
-#     stream_enabled   = true
-#     stream_view_type = "NEW_AND_OLD_IMAGES"
+resource "aws_dynamodb_table" "DynamoDB_reminder-app" {
+    name        = var.table_name
+    hash_key    = "email"
+    range_key   = "reminder_title"
+    billing_mode= "PAY_PER_REQUEST"
+    stream_enabled   = true
+    stream_view_type = "NEW_AND_OLD_IMAGES"
 
-#     attribute {
-#       name = "email"
-#       type = "S"
-#     }
+    attribute {
+      name = "email"
+      type = "S"
+    }
 
-#     attribute {
-#       name = "reminder_title"
-#       type = "S"
-#     }
+    attribute {
+      name = "reminder_title"
+      type = "S"
+    }
 
-#     ttl {
-#       attribute_name = "remindTime"
-#       enabled = true
-#     }
-# }
+    ttl {
+      attribute_name = "remindTime"
+      enabled = true
+    }
+}
