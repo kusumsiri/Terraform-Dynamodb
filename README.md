@@ -14,3 +14,8 @@ The [main.yml](https://github.com/kusumsiri/Terraform-Dynamodb/blob/main/.github
 5. `Terraform Validate` validate the configuration internally
 6. `Terraform Plan` creates the execution plan
 7. `Terraform Apply` executes the actions
+
+## Locking the Terraform state file
+By default, Terraform stores state locally in `terraform.tfstate` file. When working with Terraform in a team, use of a local file makes Terraform usage complicated because each user must make sure they always have the latest state data before running Terraform and make sure that nobody else runs Terraform at the same time.
+
+With remote state, Terraform writes the state data to a remote data store (In this case S3), which can then be shared between all members of a team. With support of DynamoDB, Terraform will lock state for all operations. This prevents others from acquiring the lock and potentially corrupting state.
