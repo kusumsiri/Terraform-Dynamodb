@@ -1,0 +1,43 @@
+on: 
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - '**/README.md'
+
+jobs:
+  deploy:
+    name: deploy to AWS
+    runs-on: ubuntu-latest
+    
+    permissions:
+      pull-requests: write
+      
+    steps:
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1 
+       
+    - name: Checkout Code
+      uses: actions/checkout@v2
+
+    - name: Setup Terraform Command
+      uses: hashicorp/setup-terraform@v2
+
+    - name: Terraform Init
+      id: init
+      run: terraform init
+
+    - name: Terraform Validate
+      id: validate
+      run: terraform validate -no-color
+
+    - name: Terraform Plan
+      id: plan
+      run: terraform plan -no-color
+
+    - name: Terraform Apply
+      id: apply
+      run: terraform apply -no-color --auto-approve
