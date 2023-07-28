@@ -10,7 +10,7 @@ terraform {
 
   backend "s3" {
     bucket         	   = "terraform-state-kusumsiri" 
-    key              	 = "state/terraform.tfstate"
+    key              	 = "state_1/terraform.tfstate"
     region         	   = "us-east-1"
     encrypt        	   = true
     dynamodb_table     = "terraform-state-locking"
